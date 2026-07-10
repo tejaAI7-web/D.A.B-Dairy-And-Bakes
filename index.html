@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D.A.B | Dairy And Bakes Begumpet</title>
+  <style>
+    :root {
+      --bg-cream: #fbf9f4;
+      --bg-pure-white: #ffffff;
+      --text-charcoal: #1c1c1e;
+      --text-muted: #6e6e73;
+      --accent-bronze: #8e7355;
+      --panel-shadow: 0 20px 40px rgba(28, 28, 30, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Playfair Display', 'Segoe UI', serif;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      color: var(--text-charcoal);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .brand-title h1 {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+    }
+
+    .brand-title span {
+      color: var(--accent-bronze);
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    .demo-badge {
+      border: 1px solid var(--text-charcoal);
+      color: var(--text-charcoal);
+      padding: 8px 20px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* Multi-Device Adaptive Hero Container Grid */
+    .hero-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .hero-text {
+      text-align: center;
+    }
+
+    .hero-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--accent-bronze);
+      margin-bottom: 20px;
+      display: block;
+      font-weight: 700;
+    }
+
+    .hero-text h2 {
+      font-size: 46px;
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 25px;
+      letter-spacing: -1px;
+    }
+
+    .hero-text h2 span {
+      color: var(--accent-bronze);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .hero-text p {
+      color: var(--text-muted);
+      font-size: 16px;
+      font-family: 'Segoe UI', sans-serif;
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Stylized Editorial Frame Component */
+    .hero-frame-wrapper {
+      display: flex;
+      justify-content: center;
+    }
+
+    .editorial-frame {
+      position: relative;
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 1 / 1;
+      background: var(--bg-pure-white);
+      padding: 12px;
+      box-shadow: var(--panel-shadow);
+      border-radius: 24px;
+    }
+
+    .slideshow-viewport {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+
+    .slideshow-viewport img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+    }
+
+    .slideshow-viewport img.active {
+      opacity: 1;
+    }
+
+    /* Asymmetrical Menu Grid Section */
+    .menu-section {
+      background: var(--bg-pure-white);
+      padding: 90px 20px;
+      border-top: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .menu-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title-block {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title-block h3 {
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+
+    .section-title-block p {
+      font-family: 'Segoe UI', sans-serif;
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-top: 8px;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 35px;
+    }
+
+    .menu-panel-card {
+      background: var(--bg-cream);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+      transition: transform 0.3s ease;
+    }
+
+    .menu-panel-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .panel-img-box {
+      width: 100%;
+      height: 240px;
+      overflow: hidden;
+    }
+
+    .panel-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .panel-details {
+      padding: 25px;
+    }
+
+    .panel-details h4 {
+      font-size: 20px;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .panel-details p {
+      font-family: 'Segoe UI', sans-serif;
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* Google Reviews Screenshot Slider Module */
+    .reviews-section {
+      padding: 90px 20px;
+      text-align: center;
+    }
+
+    .reviews-frame {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .screenshot-viewport {
+      background: var(--bg-pure-white);
+      border-radius: 20px;
+      overflow: hidden;
+      min-height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-shadow: var(--panel-shadow);
+    }
+
+    .review-img-node {
+      display: none;
+      width: 100%;
+    }
+
+    .review-img-node.visible {
+      display: block;
+    }
+
+    .review-img-node img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 10px;
+    }
+
+    footer {
+      background: #111112;
+      color: #e4e4e7;
+      padding: 60px 20px;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .footer-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .footer-wrap p {
+      color: #a1a1aa;
+    }
+
+    /* Desktop Monitor Adjustments Media Query */
+    @media (min-width: 992px) {
+      .hero-container {
+        grid-template-columns: 1.2fr 1fr;
+        padding: 100px 20px;
+      }
+      .hero-text {
+        text-align: left;
+      }
+      .hero-text h2 {
+        font-size: 60px;
+      }
+      .hero-text p {
+        margin: 0 0 40px 0;
+      }
+      .editorial-frame {
+        max-width: 420px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-title">
+      <h1>D.A.B | <span>Dairy And Bakes</span></h1>
+    </div>
+    <div class="demo-badge">Concept Layout</div>
+  </header>
+
+  <!-- Hero Component Section -->
+  <section class="hero-container">
+    <div class="hero-text">
+      <span class="hero-tag">Begumpet Sweet Escape</span>
+      <h2>Crisp Bakes. <br><span>Creamy Gelatos.</span></h2>
+      <p>Discover the finest buttery puffs, authentic churned gelatos, and rich culinary desserts prepared fresh daily in the heart of Begumpet.</p>
+    </div>
+
+    <div class="hero-frame-wrapper">
+      <div class="editorial-frame">
+        <div class="slideshow-viewport" id="foodDisplayBox">
+          <img src="item1.jpg" class="active" alt="Buttery Puff Pastry">
+          <img src="item2.jpg" alt="Artisan Melted Gelato">
+          <img src="item3.jpg" alt="Spicy Chicken 65 Bun">
+          <img src="item4.jpg" alt="Premium Black Forest Pastry">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Best-Seller Grid Card Layout Section -->
+  <section class="menu-section">
+    <div class="menu-wrap">
+      <div class="section-title-block">
+        <h3>Signature Delicacies</h3>
+        <p>Real house favorites compiled from local customer reviews</p>
+      </div>
+      
+      <div class="menu-grid">
+        <div class="menu-card-item">
+          <div class="menu-panel-card">
+            <div class="panel-img-box">
+              <img src="item1.jpg" alt="Buttery Puffs">
+            </div>
+            <div class="panel-details">
+              <h4>Flaky Buttery Puffs</h4>
+              <p>Prepared with signature layering techniques to ensure an incredibly light, rich, and crisp buttery golden bite every time.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card-item">
+          <div class="menu-panel-card">
+            <div class="panel-img-box">
+              <img src="item2.jpg" alt="Artisan Gelato">
+            </div>
+            <div class="panel-details">
+              <h4>Artisan House Gelato</h4>
+              <p>Slowly churned gourmet gelato flavors served fresh, creamy, and smooth to create the ultimate sweet escape.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card-item">
+          <div class="menu-panel-card">
+            <div class="panel-img-box">
+              <img src="item3.jpg" alt="Chicken 65 Bun">
+            </div>
+            <div class="panel-details">
+              <h4>Spicy Chicken 65 Bun</h4>
+              <p>A classic savory local fusion featuring perfectly spiced chicken tucked inside a soft, fresh baked artisan bread bun.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Google Reviews Screenshot Slider Module -->
+  <section class="reviews-section">
+    <div class="reviews-frame">
+      <div class="section-title-block">
+        <h3>Loved By Diners</h3>
+        <p style="color: var(--accent-bronze); font-weight: 700;">★ 4.7 Stars (85+ Verified Google Reviews)</p>
+      </div>
+
+      <div class="screenshot-viewport">
+        <div class="review-img-node visible">
+          <img src="review1.png" alt="Divit Khendry Review Screenshot">
+        </div>
+        <div class="review-img-node">
+          <img src="review2.png" alt="Rakesh Sathputhe Review Screenshot">
+        </div>
+        <div class="review-img-node">
+          <img src="review3.png" alt="Yaseen Review Screenshot">
+        </div>
+        <div class="review-img-node">
+          <img src="review4.png" alt="Swathi Thotat Review Screenshot">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-wrap">
+      <p style="font-weight: 700; color: #ffffff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">D.A.B | Dairy And Bakes</p>
+      <p>📍 Location: Queen's Plaza, 1-8-382/LG/D, Patigudda, Begumpet, Sardar Patel Rd, Secunderabad, Hyderabad, Telangana 500003</p>
+      <p style="margin-top: 15px;">⏰ Timings: Open Daily from 10:00 AM to 11:00 PM Night</p>
+    </div>
+  </footer>
+
+  <script>
+    // Food Asset Rotator Engine - Configured to 3 Seconds (3000ms)
+    let foodIdx = 0;
+    const foodSlides = document.querySelectorAll('#foodDisplayBox img');
+    setInterval(() => {
+      if(foodSlides.length > 0) {
+        foodSlides[foodIdx].classList.remove('active');
+        foodIdx = (foodIdx + 1) % foodSlides.length;
+        foodSlides[foodIdx].classList.add('active');
+      }
+    }, 3000);
+
+    // Google Review Screenshot Engine - Configured to 5 Seconds (5000ms)
+    let reviewIdx = 0;
+    const reviewSlides = document.querySelectorAll('.review-img-node');
+    setInterval(() => {
+      if(reviewSlides.length > 0) {
+        reviewSlides[reviewIdx].classList.remove('visible');
+        reviewIdx = (reviewIdx + 1) % reviewSlides.length;
+        reviewSlides[reviewIdx].classList.add('visible');
+      }
+    }, 5000);
+  </script>
+</body>
+</html>
+
